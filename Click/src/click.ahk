@@ -10,7 +10,7 @@ CoordMode, Pixel, Screen
 #Warn
 SendMode Input
 SetWorkingDir %A_ScriptDir% 
-#Include ./src/3rdPartyLibraries/AutoHotkey-JSON/JSON.ahk
+#Include 3rdPartyLibraries/AutoHotkey-JSON/JSON.ahk
 ; STDIN
 STDIN := FileOpen("*", "r")
 NexssStdin := STDIN.Read()
