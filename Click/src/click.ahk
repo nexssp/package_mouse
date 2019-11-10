@@ -12,6 +12,7 @@ SendMode Input
 SetWorkingDir %A_ScriptDir% 
 #Include 3rdPartyLibraries/AutoHotkey-JSON/JSON.ahk
 ; STDIN
+
 STDIN := FileOpen("*", "r")
 NexssStdin := STDIN.Read()
 NexssStdout := JSON.load(NexssStdin)
@@ -26,8 +27,7 @@ DetectHiddenWindows, On
     CoordMode Pixel  ; Interprets the coordinates below as relative to the screen rather than the active window.
 
     STDOUT := FileOpen("*", "w")
-    ; STDOUT.Write(ImageVar)
-  
+ 
     Switch NexssStdout.button
     {
         Case "Left","Middle","Right":
