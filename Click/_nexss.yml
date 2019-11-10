@@ -1,6 +1,3 @@
 name: MoveToImage
-debug: true
-input: null
-data: null
 files:
-  - name: src/findSpot.ahk
+  - name: src/click.ahk

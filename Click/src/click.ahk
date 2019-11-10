@@ -19,53 +19,28 @@ NexssStdout := JSON.load(NexssStdin)
 ; Modify Data
 ; NexssStdout.ahkOutput := "Hello from AHK! " . A_AhkVersion
 
-
-if(! NexssStdout.image){
-    MsgBox You must provide the image parameter
-}else{
-    DetectHiddenWindows, On
+if(!NexssStdout.button){
+    NexssStdout.button:="Left"
+}
+DetectHiddenWindows, On
     CoordMode Pixel  ; Interprets the coordinates below as relative to the screen rather than the active window.
-    cwd := NexssStdout.cwd
-    image:=NexssStdout.image
-    ImageVar = %cwd%\%image%
+
     STDOUT := FileOpen("*", "w")
     ; STDOUT.Write(ImageVar)
-    IfNotExist, %ImageVar%
+  
+    Switch NexssStdout.button
     {
-        MsgBox Error: File %ImageVar% not found
-        Exit
-    }
-    WinActivate, Program Manager
-    ImageSearch, FoundX, FoundY, 0, 0, A_ScreenWidth, A_ScreenHeight, %ImageVar%
-    
-    ; ImageSearch, FoundX, FoundY, 0, 0, A_ScreenWidth, A_ScreenHeight, *Icon3 %A_ProgramFiles%\SomeApp\SomeApp.exe
-    if (ErrorLevel = 2)
-    {
-        MsgBox Could not conduct the search.
-        NexssStdout.nexss := "Could not conduct the search."
-    }
-    else if (ErrorLevel = 1)
-    {
-        NexssStdout.nexss := "Image could not be found on the screen."
-        MsgBox Image could not be found on the screen.
-    }
-    else
-    {
-        NexssStdout.nexss := "ok"
-        ; MsgBox The image was found at %FoundX%x%FoundY%.
-        MouseMove, %FoundX%, %FoundY%
+        Case "Left","Middle","Right":
+        Default:
+            NexssStdout.button:="Left"
     }
 
-    ; STDOUT
-    if(FoundX){
-        NexssStdout.FoundX := FoundX
-    }
-    if(FoundY){
-        NexssStdout.FoundY := FoundY
+    if(NexssStdout.double){
+        MouseClick, %NexssStdout%.button, , , 2
+    }else{
+        MouseClick, %NexssStdout%.button,
     }
     
     NexssStdout := JSON.Dump(NexssStdout)
     
     STDOUT.Write(NexssStdout)
-
-}
