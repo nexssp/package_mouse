@@ -15,6 +15,15 @@ NexssStdout := JSON.load(NexssStdin)
 ; NexssStdout.ahkOutput := "Hello from AHK! " . A_AhkVersion
 ; NexssStdout.test := "test"
 CoordMode, Mouse, Screen
+
+if(! NexssStdout.x){
+    MsgBox You must provide the x parameter
+}
+
+if(! NexssStdout.y){
+    MsgBox You must provide the y parameter
+}
+
 MouseMove, NexssStdout.x, NexssStdout.y
 ; NexssStdout.moved := "MOVED TO: " . NexssStdout.x . " x " . NexssStdout.y
 ; STDOUT
