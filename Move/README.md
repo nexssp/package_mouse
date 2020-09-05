@@ -3,5 +3,5 @@
 Moves mouse cursor to the position x,y.
 
 ```sh
-nexss Mouse/Move --x=10 --y=200
+nexss Mouse/Move --_x=10 --_y=200
 ```

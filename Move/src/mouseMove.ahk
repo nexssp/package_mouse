@@ -16,16 +16,18 @@ NexssStdout := JSON.load(NexssStdin)
 ; NexssStdout.test := "test"
 CoordMode, Mouse, Screen
 
-if(! NexssStdout.x){
-    MsgBox You must provide the x parameter
+if(! NexssStdout._x){
+    MsgBox You must provide the _x parameter
+    NexssStdout.nxsStop:=true
 }
 
-if(! NexssStdout.y){
-    MsgBox You must provide the y parameter
+if(! NexssStdout._y){
+    MsgBox You must provide the _y parameter
+    NexssStdout.nxsStop:=true
 }
 
-MouseMove, NexssStdout.x, NexssStdout.y
-; NexssStdout.moved := "MOVED TO: " . NexssStdout.x . " x " . NexssStdout.y
+MouseMove, NexssStdout._x, NexssStdout._y
+; NexssStdout.moved := "MOVED TO: " . NexssStdout._x . " x " . NexssStdout._y
 ; STDOUT
 NexssStdout := JSON.Dump(NexssStdout)
 STDOUT := FileOpen("*", "w")
