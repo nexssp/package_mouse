@@ -1,0 +1,14 @@
+name: Mouse/Move
+debug: true
+input:
+  - name: _x
+    validate:
+      - type: required
+  - name: _y
+    validate:
+      - type: required
+files:
+  - name: MouseMoveXdo.sh
+commands:
+  - name: init
+    command: apt install xdotool

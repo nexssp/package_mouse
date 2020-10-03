@@ -20,27 +20,28 @@ NexssStdout := JSON.load(NexssStdin)
 ; Modify Data
 ; NexssStdout.ahkOutput := "Hello from AHK! " . A_AhkVersion
 
-if(!NexssStdout.button){
-    NexssStdout.button:="Left"
+if(!NexssStdout._button){
+    NexssStdout._button:="Left"
 }
+
 DetectHiddenWindows, On
-    CoordMode Pixel  ; Interprets the coordinates below as relative to the screen rather than the active window.
+CoordMode Pixel  ; Interprets the coordinates below as relative to the screen rather than the active window.
 
-    STDOUT := FileOpen("*", "w")
- 
-    Switch NexssStdout.button
-    {
-        Case "Left","Middle","Right":
-        Default:
-            NexssStdout.button:="Left"
-    }
+STDOUT := FileOpen("*", "w")
 
-    if(NexssStdout.double){
-        MouseClick, %NexssStdout%.button, , , 2
-    }else{
-        MouseClick, %NexssStdout%.button,
-    }
-    
-    NexssStdout := JSON.Dump(NexssStdout)
-    
-    STDOUT.Write(NexssStdout)
+Switch NexssStdout._button
+{
+    Case "Left","Middle","Right":
+    Default:
+        NexssStdout._button:="Left"
+}
+
+if(NexssStdout._double){
+    MouseClick, %NexssStdout%._button, , , 2
+}else{
+    MouseClick, %NexssStdout%._button,
+}
+
+NexssStdout := JSON.Dump(NexssStdout)
+
+STDOUT.Write(NexssStdout)

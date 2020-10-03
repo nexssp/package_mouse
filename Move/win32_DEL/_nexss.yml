@@ -1,6 +1,0 @@
-name: Move
-debug: true
-input: null
-data: null
-files:
-  - name: src/mouseMove.ahk

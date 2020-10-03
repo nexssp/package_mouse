@@ -1,0 +1,7 @@
+name: Mouse/Move
+debug: true
+files:
+  - name: MouseClick.sh
+commands:
+  - name: init
+    command: apt install xdotool
